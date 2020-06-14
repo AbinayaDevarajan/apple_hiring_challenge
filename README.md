@@ -1,4 +1,29 @@
 # apple_hiring_challenge
+
+```
+pip install matplotlib
+pip install networkx
+for the usage 
+usage: installation_automation.py [-h] [--input_file INPUT_FILE]
+
+Script to install the dependencies
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --input_file INPUT_FILE
+                        This is the input configuration file to be parsed.
+
+
+The algorithm used is DAG -- Directed acyclic graph algorithm for constructing the graphs 
+for the traversal:
+    dfs_post_order is used 
+    - get_successors is used  detect the successors and the incoming edges for finding out the 
+    dependencies
+```
+
+![Intial Graph Representation eg](https://github.com/AbinayaDevarajan/apple_hiring_challenge/blob/master/images/networkx_graph.PNG)
+
+
 This repository will contain solution to the apple hiring challenge
 The input will contain a sequence of commands (as described below), each on a separate line
 containing no more than eighty characters. Item names are case sensitive, and each is no

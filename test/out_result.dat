@@ -1,0 +1,8 @@
+DEPEND TELNET A
+INSTALL TELNET
+	 Installing  A
+	 Installing  TELNET
+REMOVE TELNET
+	 Removing TELNET
+	 Removing A
+END

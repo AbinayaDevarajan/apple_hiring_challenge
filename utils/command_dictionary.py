@@ -11,3 +11,12 @@ command_description_dict ={
     'LIST':'list the names of all currently installed components',
     'END':'End of the program'
 }
+
+command_dictionary={
+
+    'dependency_build':'DEPEND',
+    'installation':'INSTALL',
+    'uninstallation':'REMOVE',
+    'terminate_program':'END',
+    'list_installed_components': 'LIST'
+}
