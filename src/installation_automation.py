@@ -1,12 +1,11 @@
 
-
-
 import sys
 sys.path.append('../utils')
 sys.path.append('../conf')
 sys.path.append('../common')
 from  input_reader import AutomationInputReader
 from  command_dictionary import command_description_dict
+import argparse
 
 """
 Generic Graph ADT Template
@@ -108,27 +107,17 @@ class Graph(object):
 
 
 
+def execute_automation():
+    parser = argparse.ArgumentParser(
+        description='Script to install the dependencies')
+    parser.add_argument(
+        '--input_file',
+        help='This is the input configuration file to be parsed.')
+    args = parser.parse_args()
+    file_name = args.input_file
+    AutomationInputReader(args.file_name).get_command_action_list()
+    
+
 if __name__ == "__main__":
-    g = {"TELNET": ["TCP", "NETCARD"],
-         "TCPIP": ["NETCARD"],
-         "DNS": ["TCPIP", "NETCARD"],
-         "BROWSER": ["TCPIP", "HTML"],
-        
-         }
-
-
-    graph = Graph(g)
-
-    print("Vertices of graph:")
-    print(graph.vertices())
-
-    print("Edges of graph:")
-    print(graph.edges())
-
-
-    print('All paths from vertex "a" to vertex "b":')
-    path = graph.find_all_paths("TELNET", "BROWSER")
-    print(str(g))
-    print(graph.get_children("BROWSER"))
-
-   
+    execute_automation()
+    
