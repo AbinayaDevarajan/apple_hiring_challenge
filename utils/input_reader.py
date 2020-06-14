@@ -18,9 +18,6 @@ class AutomationInputReader():
 
     def get_command_action_list(self):
         return [line.split(" " ) for line in self.read_input()]
-             
 
-#print(AutomationInputReader('..\data\input.txt').get_command_action_list())
-            
- 
+
 
