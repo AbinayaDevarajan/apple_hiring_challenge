@@ -105,3 +105,7 @@ This solution uses python for running the program on Linux, Mac, Windows you hav
 -- the problem is a graph problem
 The nodes denote the software components and the vertices will point to the other nodes having the 
 dependencies
+
+"""
+The idea is to create a dependency -- adjacency matrix and resolve the dependencies in the given order 
+"""
