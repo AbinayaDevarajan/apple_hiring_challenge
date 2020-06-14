@@ -115,14 +115,20 @@ def execute_automation():
         help='This is the input configuration file to be parsed.')
     args = parser.parse_args()
     file_name = args.input_file
+    dependency_graph = Graph()
+
     for command_line in AutomationInputReader(file_name).get_command_action_list():
         if (command_line[0] not in command_description_dict):
             print("The command is an invalid command not found in the specification, skipping it")
             continue
         else:
-            pass
-
-
+            if (command_line[0]=='DEPEND'):
+                print("Processing the dependencies", command_line[1],command_line[2:len(command_line)])
+                dependency_graph.add_vertex(command_line[1])
+                for vertex in range(2,len(command_line)):   
+                    dependency_graph.add_edge([command_line[1],command_line[vertex]])
+    print (str(dependency_graph))
+    print(dependency_graph)
 
 if __name__ == "__main__":
     execute_automation()
