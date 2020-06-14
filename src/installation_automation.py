@@ -115,8 +115,14 @@ def execute_automation():
         help='This is the input configuration file to be parsed.')
     args = parser.parse_args()
     file_name = args.input_file
-    AutomationInputReader(args.file_name).get_command_action_list()
-    
+    for command_line in AutomationInputReader(file_name).get_command_action_list():
+        if (command_line[0] not in command_description_dict):
+            print("The command is an invalid command not found in the specification, skipping it")
+            continue
+        else:
+            pass
+
+
 
 if __name__ == "__main__":
     execute_automation()
