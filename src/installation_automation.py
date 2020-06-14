@@ -1,5 +1,7 @@
 
+import matplotlib.pyplot as plt
 import sys
+import networkx
 sys.path.append('../utils')
 sys.path.append('../conf')
 sys.path.append('../common')
@@ -11,6 +13,23 @@ import argparse
 Generic Graph ADT Template
 Graph ADT for constructing 
 """
+
+
+class Edge:
+    def __init__(self, u, v):
+        self.u = u
+        self.v = v
+
+    def __eq__(self, other):
+        return self.u == self.u and self.v == other.v
+
+    def __hash__(self):
+        return hash(str(self.u) + "-->" + str(self.v))
+
+    def __str__(self):
+        return str(self.u) + "-->" + str(self.v)
+
+
 class Graph(object):
 
     def __init__(self, graph_dict=None):
@@ -105,6 +124,9 @@ class Graph(object):
         graph = self.__graph_dict
         return graph[vertex]
 
+    def get_graph_dict(self):
+        return self.__graph_dict
+
 
 
 def execute_automation():
@@ -115,8 +137,10 @@ def execute_automation():
         help='This is the input configuration file to be parsed.')
     args = parser.parse_args()
     file_name = args.input_file
-    dependency_graph = Graph()
+   
+    dependency_graph = G = networkx.DiGraph()
 
+    
     for command_line in AutomationInputReader(file_name).get_command_action_list():
         if (command_line[0] not in command_description_dict):
             print("The command is an invalid command not found in the specification, skipping it")
@@ -124,11 +148,19 @@ def execute_automation():
         else:
             if (command_line[0]=='DEPEND'):
                 print("Processing the dependencies", command_line[1],command_line[2:len(command_line)])
-                dependency_graph.add_vertex(command_line[1])
-                for vertex in range(2,len(command_line)):   
-                    dependency_graph.add_edge([command_line[1],command_line[vertex]])
+                dependency_graph.add_node(command_line[1])
+                for vertex in range(2,len(command_line)):
+                    print("processing the element",command_line[vertex])   
+                    dependency_graph.add_node(command_line[vertex])
+                    dependency_graph.add_edge(command_line[1], command_line[vertex])
     print (str(dependency_graph))
-    print(dependency_graph)
+    
+    networkx.draw(G, with_labels=True, edge_color='r')
+    plt.show()
+
+    print(dependency_graph.edges())
+    #print(dependency_graph.get_graph_dict())
+    #print(dependency_graph.find_all_paths("BROWSER", "NETCARD"))
 
 if __name__ == "__main__":
     execute_automation()
