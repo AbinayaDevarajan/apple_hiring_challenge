@@ -25,6 +25,8 @@ No output, except the echo, is produced for a DEPEND command or the line contain
 There will be at most one dependency list per item.
 Sample Input
 _______________________________________________________________________
+
+```
 DEPEND TELNET TCPIP NETCARD
 DEPEND TCPIP NETCARD
 DEPEND DNS TCPIP NETCARD
@@ -45,11 +47,12 @@ REMOVE TCPIP
 REMOVE BROWSER
 REMOVE TCPIP
 END
-
+```
 
 Sample Output
 _____________________________________________________________________
 
+```
 DEPEND TELNET TCPIP NETCARD
 DEPEND TCPIP NETCARD
 DEPEND DNS TCPIP NETCARDDEPEND BROWSER TCPIP HTML
@@ -94,7 +97,7 @@ Removing TCPIP
 REMOVE TCPIP
 TCPIP is not installed.
 END
-
+```
 __________________________________________________________________________________
 
 This solution uses python for running the program on Linux, Mac, Windows you have to have python installed

@@ -17,4 +17,4 @@ class InputReader():
             raise InstallationAutomationFileException("Cannot read the input file")
             
  
-print(InputReader("..\data\input.txt").read_input())
+
